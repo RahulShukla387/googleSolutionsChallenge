@@ -1,0 +1,55 @@
+<!-- <!DOCTYPE html>
+ <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Your response is </h1>
+   // <% for(result of sampleCenters){ %>
+        <h2> name: 
+            //<%= result.name  %> </h2> <br>
+        <p> <b>address:</b>
+            // <%= result.address  %> </p> <br>
+        <p> <b>location:</b>
+            //  <%= result.location.coordinates  %> </p> <br>
+        <a href="">show in maps</a>
+        <hr>
+      //  <% } %> 
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nearby Centers</title>
+</head>
+<body>
+  <h1>Nearby Centers</h1>
+  <ul>
+    <% sampleCenters.forEach(center => { %>
+      <li>
+        <p><strong>Name:</strong> <%= center.name %></p>
+        <p><strong>Address:</strong> <%= center.address %></p>
+        <p><strong>Location:</strong> <%= center.location.coordinates.join(',') %></p>
+        <!-- Anchor tag to open Google Maps in a new tab -->
+        <a href="https://www.google.com/maps?q=<%= center.location.coordinates.join(',') %>"  target="_blank">
+          Show in Map
+        </a>
+        <!-- Embedded Google Map -->
+        <iframe
+          width="300"
+          height="200"
+          style="border:0"
+          loading="lazy"
+          allowfullscreen
+          src="https://www.google.com/maps/embed/v1/place?key=<%= apiKey  %>&q=<%= center.location.coordinates.join(',') %>">
+        </iframe>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
